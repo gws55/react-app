@@ -1,7 +1,7 @@
 const clean = require('./clean');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config');
-const bs = require('browser-sync').create();
+const bs = require('browser-sync');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
@@ -9,9 +9,10 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const bundler = webpack(webpackConfig);
 
 // start browserSync server with webpack middleware
+bs.create();
 bs.init({
 	server: {
-		baseDir: 'build'
+		baseDir: 'public'
 	},
 	middleware: [
 		webpackDevMiddleware(bundler, {
